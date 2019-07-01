@@ -16,6 +16,9 @@ public class ExampleExceptionTest {
   public static Object[][] data() {
     return new Object[][]{
         {2, 2, 4},
+        {2, 2, 4},
+        {10, 10, 100},
+        {2, 20, 40},
         {2, 3, 6}
         // TODO add 2 more test data here
     };
@@ -30,16 +33,18 @@ public class ExampleExceptionTest {
   public static Object[][] negativeData() {
     return new Object[][]{
         {-2, 2},
+        {-3, -10},
+        {5, 0},
         {2, -2}
         // TODO add 2 more test data here
     };
   }
 
- /* @Test(dataProvider = "data")
+  @Test(dataProvider = "data")
   public void testRectangleArea(int a, int b, int c) {
     // TODO put your code here3
     assertEquals(ExampleException.rectangleArea(a, b), c);
-  }*/
+  }
 
 
   @Test(dataProvider = "negativeData")
@@ -47,13 +52,12 @@ public class ExampleExceptionTest {
 
     // TODO put your code here
 
-
       try {
           ExampleException.rectangleArea(a, b);
-          fail("ainput value is below zero!!");
+          fail("The data doesn't relates to exception!");
       }
       catch(IllegalArgumentException r) {
-        Assert.fail();
+        assertEquals(r.getMessage(), "input value is below zero!");
       }
   }
 }
